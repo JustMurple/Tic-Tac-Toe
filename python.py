@@ -54,23 +54,29 @@ def checkWin(B):
         return True
     elif(B[0][1]==B[1][1]==B[2][1]!="-"):
         return True
-    elif(B[0][2]==B[1][1]==B[2][2]!="-"):
+    elif(B[0][2]==B[1][2]==B[2][2]!="-"):
         return True
     elif(B[0][0]==B[1][1]==B[2][2]!="-"):
         return True
     elif(B[0][2]==B[1][1]==B[2][0]!="-"):
         return True
     else: return False
-
+def checkTie(B):
+    for r in B:
+        for c in r:
+            if(c=="-"): return False
+    return True
 p=1
 
 B = [["-","-","-"],
      ["-","-","-"],
      ["-","-","-"]]
 
-while(checkWin(B)==False):
+while(checkWin(B)==False and checkTie(B)==False):
     show(B)
     regMove(p, B)
     p=round(p)
 
-print(round(p), "Won!")
+if(checkWin(B)==True):
+    print(round(p), "Won!")
+else: print("It's a tie :(")
